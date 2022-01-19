@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/01hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>为什么在8086处理器不能直接把立即数存入段寄存器？</title>
+    <url>/2022/01Why-can-t-we-move-an-immediate-operand-to-an-ES-register-in-8086/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么在8086处理器不能直接把立即数存入段寄存器？<br>Why can’t we move an immediate operand to an ES register in 8086?  </p>
+</blockquote>
+<h1 id="向段寄存器存内容的常见两步"><a href="#向段寄存器存内容的常见两步" class="headerlink" title="向段寄存器存内容的常见两步"></a>向段寄存器存内容的常见两步</h1><p>如果有一个段地址，需要存入段寄存器（ES），在 8086 处理器中，通常要这样做：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ax, 0xb800;显存地址</span><br><span class="line">mov es, ax</span><br></pre></td></tr></table></figure>
+<p>不能直接向 ES 直接传入立即数，必须先存入通用寄存器（如 ax），再从 ax 存入 ES。<br>根据 Quora 上 Paul 的<a href="https://qr.ae/pG3Ly5">回答</a>,8086 确实是没有设计这样的指令：</p>
+<blockquote>
+<p>The designers of the 8086 architecture didn’t consider being able to store an immediate into any segment register important enough to encode it as an instruction in the binary format. As such, you need to do this in two steps: load the immediate into ax and then store it into the segment register.<br>译：8086 架构的设计者没有考虑能够将立即数存储到任何重要的段寄存器中，以将其编码为二进制格式的指令。因此，您需要分两步执行此操作：将立即数加载到 ax 中，然后将其存储到段寄存器中。  </p>
+</blockquote>
+<h1 id="两种可能："><a href="#两种可能：" class="headerlink" title="两种可能："></a>两种可能：</h1><h2 id="8086-时代不允许这复杂的设计了："><a href="#8086-时代不允许这复杂的设计了：" class="headerlink" title="8086 时代不允许这复杂的设计了："></a>8086 时代不允许这复杂的设计了：</h2><p>北极在知乎上的<a href="https://www.zhihu.com/question/43608287/answer/96163327">回答</a>:  </p>
+<blockquote>
+<p>我个人觉得，就是编码太麻烦，opcode不太够用，指令太长。<br>……<br><img src="8086%E5%AF%84%E5%AD%98%E5%99%A8%E7%BC%96%E7%A0%81.jpg"><br>因为MOV操作的寄存器有两个，其中的一个还可能是内存，还可能是寄存器组合，这样的话，2*3bit（注：原文应指8bit）用于描述寄存器，剩下2个bit用于描述是内存还是别的东西，这样算下来，一个字节勉强够用。而如果把段寄存器加上，就需要4个bit编码一个寄存器，仅仅描述两个寄存器就需要一个字节，加上其它的修饰，MOV指令长度就需要整体增加一个字节，这对于过去的计算机来说，开销无疑是非常巨大的，过去计算机内存都是以KB计算的，每个MOV指令增加一个字节，在设计者看来是无法接受的。  </p>
+</blockquote>
+<p>这大概就是在说，为了节省节省开销，没有更多空间留给 <code>mov es imd</code> 形式的指令设计了。<br>这与 Paul 的<a href="https://qr.ae/pG3Ly5">回答</a>中的评论是一致的：  </p>
+<blockquote>
+<p>I don’t think it’s impossible to fit it in, but rather omitting it simplifies the processor design, and those times are different from today in which you add extra complexity for performance.<br>译：我不认为不可能设计并适配它（指<code>mov es imd</code> 形式的指令），而是省略它可以简化处理器的设计，而那个时代与今天这为了性能而增加额外的复杂性的时代不同。  </p>
+</blockquote>
+<h2 id="安全性问题："><a href="#安全性问题：" class="headerlink" title="安全性问题："></a>安全性问题：</h2><p>CSDN 上有一个很老的<a href="https://bbs.csdn.net/topics/340215235">帖子</a>，其中有一个回复考虑到了安全性的问题：<br><img src="burningstyle%E7%9A%84%E5%9B%9E%E5%A4%8D.jpg"><br>在 Paul 的<a href="https://qr.ae/pG3Ly5">回答</a>中也有提到：  </p>
+<blockquote>
+<p>Now storing an immediate into a segment register has a second issue — if you’re not the OS, how do you know that that memory region doesn’t belong to someone else?<br>译：现在，将一个即时数据存储到段寄存器中还有一个问题–如果你不是操作系统，你怎么知道那个内存区域不属于其他人？  </p>
+</blockquote>
+<p>其实这个不难理解，汇编程序对内存的使用应当存在一定的抽象以保证安全。  </p>
+]]></content>
+  </entry>
+</search>
