@@ -180,6 +180,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tymon42.github.io/2022/01binary-and-math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tymon-海鱼Harry">
+      <meta itemprop="description" content="学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tymon-海鱼Harry 的 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01binary-and-math/" class="post-title-link" itemprop="url">二进制、数学和计算机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-20 11:45:01 / 修改时间：13:05:31" itemprop="dateCreated datePublished" datetime="2022-01-20T11:45:01+08:00">2022-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果非要有一个开始，我愿意是香农写下“只是用继电器和开关，就能实现对两数自动求和”的那个夜晚。  </p>
+<blockquote>
+<p>使用继电电路进行复杂的数学运算是可能的。事实上，任何可以用如果、或、与等字词在有限步内加以完整描述的操作，都可以用继电器自动完成。</p>
+<p>——香农  </p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原来越多人学习编程，但是他们比没有理解代码运行的原理。专修计算机相关专业的人中，也有相当一部分没有办法说出个所以然，只能把计算机看作一个黑匣子，学习编程语言就像是在霍格沃兹学习魔咒。<br>众所周知的是，任何事物的出现都是由前因的。计算机也是有它的理论和物质基础的。<br>理解了计算机计算的原理及实现，对于克服学编程的为难心理是很有帮助的。  </p>
+<h1 id="进制是可以互相转化的"><a href="#进制是可以互相转化的" class="headerlink" title="进制是可以互相转化的"></a>进制是可以互相转化的</h1><p>日常使用的十进制，只用个位是没有办法表示出“十”的，“9+1”就需要进位。<br>二进制就是只用个位没有办法表示出“2”，想要表示“1+1”的话，不能写“2”，而要写“10”，为了避免歧义，在书写的时候会在后面加上括起来的二，以示二进制，比如“10(2)”。<br>同理，“10(2)=2(10)”，二进制的“10”等于十进制的“2”。<br>有一天外星人告诉你圆周率约是：11.00100100001111110110100110100010010110110000100101<br>你应该要能换算成：3.1415926<br><strong>不同的进制下，数学运算结果是等价的。</strong><br>所以，要是设计<strong>计算十进制结果</strong>的自动运算机器太麻烦，那么造一台<strong>计算二进制结果</strong>的运算机器，其实效果是一样的。<br>二进制下是如何做计算的呢？  </p>
+<h1 id="生活随处可见布尔运算"><a href="#生活随处可见布尔运算" class="headerlink" title="生活随处可见布尔运算"></a>生活随处可见布尔运算</h1><p>实际上，布尔运算很早就被发明了。<br>布尔是英国的数学家，在1847年发明了处理二值之间关系的逻辑数学计算法，包括联合、相交、相减。<br>与、或、非三种布尔运算，实质上是对二进制输入（真或假、1或0）的某种处理，做单一输出。<br><img src="%E7%9C%9F%E5%80%BC%E8%A1%A8.jpg"><br><img src="%E4%B8%8E%E6%88%96%E9%9D%9E%E8%BF%90%E7%AE%97.jpg"><br>直接在纸面理解，其实也不复杂，但是太<strong>抽象</strong>了。<br>我找到了一个很形象的<a target="_blank" rel="noopener" href="https://weibo.com/6105753431/Im8wYsdq9">例子</a>，强烈推荐你去看一下。<br>后来人们又发现,这样的过程（布尔运算），还可以用<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zh411f7bv">电路实现</a>。这样子的电路被叫做逻辑电路。  </p>
+<h1 id="从布尔到加法运算"><a href="#从布尔到加法运算" class="headerlink" title="从布尔到加法运算"></a>从布尔到加法运算</h1><p>光有简单的逻辑电路，什么也做不了，真正让电路在普通人理解层面的解决数学问题，归功于下面这个发现：<br>当你要做一位二进制加法，你把所有的可能都列出来：  </p>
+<blockquote>
+<p>X+Y=Z<br>0+0=0<br>0+1=1<br>1+0=1<br>1+1=10</p>
+</blockquote>
+<p>然后，你总结了一下，得到了下面这张表：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">X</th>
+<th align="center">Y</th>
+<th align="center">进位</th>
+<th align="center">和</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>你会发现，把 X、Y 看作输入，进位的结果，就是“X与Y”的结果，和的结果就是“X异或Y”的结果。<br>自然而然，按照这个思路，你就能用<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HZ4y137SY">电路实现一个加法器</a>，用来做二进制的加法。<br>其余的四则运算也同样能用电路实现。<br>这样子的电路计算出的结果是二进制的，最后再转化成十进制，就是我们日常熟悉的结果形式了。  </p>
+<h1 id="其余参考资料"><a href="#其余参考资料" class="headerlink" title="其余参考资料"></a>其余参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20112194/answer/84394468">为什么计算机能读懂 1 和 0 ？ - 张大昭的回答 - 知乎</a>  </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://tymon42.github.io/2022/01Why-can-t-we-move-an-immediate-operand-to-an-ES-register-in-8086/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,7 +501,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
