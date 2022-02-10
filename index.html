@@ -180,6 +180,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tymon42.github.io/2022/02%E5%85%B3%E4%BA%8E%20VR%20%E6%9C%BA%E6%A2%B0%E8%87%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tymon-海鱼Harry">
+      <meta itemprop="description" content="学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tymon-海鱼Harry 的 Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02%E5%85%B3%E4%BA%8E%20VR%20%E6%9C%BA%E6%A2%B0%E8%87%82/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-10 19:42:17 / 修改时间：22:00:38" itemprop="dateCreated datePublished" datetime="2022-02-10T19:42:17+08:00">2022-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="为什么要设计-VR-机械臂"><a href="#为什么要设计-VR-机械臂" class="headerlink" title="为什么要设计 VR 机械臂"></a>为什么要设计 VR 机械臂</h1><h2 id="现有-VR-的问题"><a href="#现有-VR-的问题" class="headerlink" title="现有 VR 的问题"></a>现有 VR 的问题</h2><p>现在流行的 VR 设备（<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82%E5%89%8D%E6%97%A0%E6%B3%95%E7%BB%93%E6%9D%9F%E7%9A%84VR%E6%94%BB%E5%8A%BF/" title="圣诞节前无法结束的VR攻势">圣诞节前无法结束的VR攻势</a>），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）。<br>VR 头显可以让人类以更沉浸的形式接入互联网，更是极大拓宽了人眼接入互联网的带宽。人类对更大带宽接受信息的刚需，必然会推动眼前近距离显示器（比如 VR 头显）的普及和长时间使用，那么就需要解决“重量”问题和过重导致的佩戴不舒适问题。<br>这种解决方案可能是设计一种 VR 的固定使用场景。  </p>
+<h2 id="VR-的固定使用场景"><a href="#VR-的固定使用场景" class="headerlink" title="VR 的固定使用场景"></a>VR 的固定使用场景</h2><p>虽然 VR 头显是一种移动设备，但是固定场景的使用也是必须的。比如手机和笔记本电脑，这两种典型的移动设备，在大多数人的大部分使用场景，实际上是固定场景。<br>大部分人们不会长时间地边走路，边玩手机，更不会频繁地端着笔记本电脑走路。<br>人们都是坐着，甚至躺着玩手机，玩电脑的。<br>于是为弥补 VR 设备固定场景的长时间使用形式的缺失，我在 2019 年同 <a target="_blank" rel="noopener" href="https://www.cunoe.com/">Cunky</a> 提出<strong>一种可以自动捕获人脸空间状态并通过 FOC 反馈控制迎合人脸的末端持有的 VR 头显的机械臂。</strong>  </p>
+<h1 id="机械臂的预期效果"><a href="#机械臂的预期效果" class="headerlink" title="机械臂的预期效果"></a>机械臂的预期效果</h1><h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><p>这个机械臂固定在书桌上，位于人体躯干前方（原显示器位置）。<br>开机前，机械臂处于折叠收起状态。<br>开机后，其上面的摄像头会识别人脸，根据特征点（landmark）估算角度，估算相对位置。<br>根据摄像头计算出的这些信息，机械臂开始展开，末端不断接近人脸。末端除了有 VR 头显，还有精细传感器（比如结构光）扫描人脸，生成人脸三维模型，用以加速 landmark 估算环节。  </p>
+<blockquote>
+<p>这个结构光传感器亦可用于元宇宙角色的表情识别。<br>这个传感器也可以用开放了结构光 SDK 的手机替代。  </p>
+</blockquote>
+<p>机械臂控制末端 VR 头显贴合人脸，保持 VR 头显以一个微小但舒适的里压迫面部，形成合理的 FOC 力反馈，这个反馈可以指导机械臂快速适应人脸姿态变化。<br>这基本上就是整个机械臂的硬件架构，大概就是：</p>
+<ol>
+<li>机械臂及附件卡口；</li>
+<li>低精度传感器（如单目摄像头）；</li>
+<li>高精度传感器（如结构光模块）。  <h2 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h2>而软件架构是围绕着硬件设计的。之后会详细地补充，这里大概列出一下：</li>
+<li>面部关键点检测；</li>
+<li>关键点还原面部角度（working on it）；</li>
+<li>FOC 矢量控制；</li>
+<li>结构光构建面部模型；</li>
+<li>……</li>
+</ol>
+<p><strong>该页面长期更新</strong>  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://tymon42.github.io/2022/02%E6%8C%89%E4%B8%8B%E5%BC%80%E6%9C%BA%E9%94%AE%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BA%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -902,7 +978,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
