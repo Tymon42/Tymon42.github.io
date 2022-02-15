@@ -279,10 +279,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-03 17:35:46 / 修改时间：18:51:22" itemprop="dateCreated datePublished" datetime="2022-02-03T17:35:46+08:00">2022-02-03</time>
+              <time title="创建时间：2022-02-03 17:35:46" itemprop="dateCreated datePublished" datetime="2022-02-03T17:35:46+08:00">2022-02-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-15 13:07:06" itemprop="dateModified" datetime="2022-02-15T13:07:06+08:00">2022-02-15</time>
+              </span>
 
           
 
@@ -295,7 +301,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>操作系统（OS）内部有许多进程管理，只要 OS 被正确加载了，那么什么软件都可以被 OS 正确地运行。<br>但是在计算机通电的时候，硬盘里的 OS 是怎么进入到内存并运行的呢？<br>大体是这样一个流程：<br><img src="%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.jpg">  </p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>操作系统（OS）内部有许多进程管理，只要 OS 被正确加载了，那么什么软件都可以被 OS 正确地运行。<br>但是在计算机通电的时候，硬盘里的 OS 是怎么进入到内存并运行的呢？<br>大体是这样一个流程：<br><img src="http://47.96.96.172:3000/img?md5=7fc55271c9a6820690a6a110c95e0b08" alt="开机启动流程.jpg">  </p>
 <h1 id="什么叫“加载”"><a href="#什么叫“加载”" class="headerlink" title="什么叫“加载”"></a>什么叫“加载”</h1><p>加载在下文的意思，基本上就是指，把储存器上的东西复制到内存里。  </p>
 <h1 id="从通电到-BIOS"><a href="#从通电到-BIOS" class="headerlink" title="从通电到 BIOS"></a>从通电到 BIOS</h1><h2 id="BIOS-加载"><a href="#BIOS-加载" class="headerlink" title="BIOS  加载"></a>BIOS  加载</h2><p>是用来完成加载辅存中的任务的的程序。<br>它首先存在 ROM 里面。  </p>
 <h2 id="ROM"><a href="#ROM" class="headerlink" title="ROM"></a>ROM</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Read-only_memory">ROM(Read Only Memory)</a>    </p>
@@ -308,7 +314,7 @@
 <p>BIOS 位于 0xF0000 ~ 0xFFFFF (64K)。<br>BIOS 启动块位于 0xFE000 ~ 0xFFFFF (8K)。  </p>
 </blockquote>
 <p><strong>CPU 的硬件设计逻辑为加电瞬间强行将 CS 的值置为 0xF000、IP 的值置为0xFFF0，即 0xFFFF0。</strong>  </p>
-<h2 id="实模式下的内存分布"><a href="#实模式下的内存分布" class="headerlink" title="实模式下的内存分布"></a>实模式下的内存分布</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Real_mode">实模式（Real Mode）</a>是 Intel 80286 和之后的 80x86 兼容 CPU 的操作模式（应该包括8086）。实模式有 20 根地址线，可以访问 2^20=1,048,576，即1 MB的存储器。<br>这 1M 的空间是这样分配的：<br><img src="%E5%AE%9E%E6%A8%A1%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.jpg"><br>你能看到有关 BIOS 的部分与上文提到的是一致的。  </p>
+<h2 id="实模式下的内存分布"><a href="#实模式下的内存分布" class="headerlink" title="实模式下的内存分布"></a>实模式下的内存分布</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Real_mode">实模式（Real Mode）</a>是 Intel 80286 和之后的 80x86 兼容 CPU 的操作模式（应该包括8086）。实模式有 20 根地址线，可以访问 2^20=1,048,576，即1 MB的存储器。<br>这 1M 的空间是这样分配的：<br><img src="http://47.96.96.172:3000/img?md5=0355863a0cc4d9b3ae9f295ef83c0e14" alt="实模式内存分配.jpg"><br>你能看到有关 BIOS 的部分与上文提到的是一致的。  </p>
 <h2 id="BIOS-到-OS-启动区"><a href="#BIOS-到-OS-启动区" class="headerlink" title="BIOS 到 OS 启动区"></a>BIOS 到 OS 启动区</h2><h3 id="寻找启动盘"><a href="#寻找启动盘" class="headerlink" title="寻找启动盘"></a>寻找启动盘</h3><p>BIOS 里面有一个队列储存着接下来的启动顺序（Boot Sequence），这个排在前面的存储设备就是优先转交控制权的设备。<br>BIOS 会读取这个设备（也就是启动盘）的 0 盘 0 道 1 扇区（这一步在<a href="/2022/01%E5%A6%82%E4%BD%95%E7%94%A8-VirtualBox-%E8%BF%90%E8%A1%8C%E6%B1%87%E7%BC%96/" title="如何用-VirtualBox-运行汇编">如何用-VirtualBox-运行汇编</a>里也能看到），这个扇区有 512 个字节的内容。<br>如果是以 0x55、0xaa 结尾，就会被 BIOS 认作一个启动区，叫做<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_boot_record">“主引导记录”（MBR）</a>。  </p>
 <blockquote>
 <p>问：如果第一个扇区没有符合条件的启动区，BIOS 会作何反应？是查找 0 盘 0 道 2 扇区吗？</p>
@@ -653,7 +659,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-07 22:08:28" itemprop="dateModified" datetime="2022-02-07T22:08:28+08:00">2022-02-07</time>
+                <time title="修改时间：2022-02-15 13:03:00" itemprop="dateModified" datetime="2022-02-15T13:03:00+08:00">2022-02-15</time>
               </span>
 
           
@@ -669,11 +675,11 @@
       
           <h1 id="Oculus-的圣诞大捷"><a href="#Oculus-的圣诞大捷" class="headerlink" title="Oculus 的圣诞大捷"></a>Oculus 的圣诞大捷</h1><p>二战时，欧洲的小胡子想圣诞节前结束战争，而美国人在圣诞节之后才开始攻势。<br>如今的美国人也开始了一段<a target="_blank" rel="noopener" href="https://techcrunch.com/2022/01/06/meta-had-a-good-holiday-as-its-oculus-vr-companion-app-gained-2m-downloads-since-christmas">新的圣诞攻势</a>。<br>在抖音霸榜不知多久之后，App Store 的下载热霸久违地又见到外国公司的APP——Oculus 拔得头筹。  </p>
 <blockquote>
-<p><img src="Oculus%E5%9C%A3%E8%AF%9E%E8%8A%82AppStore%E4%B8%8B%E8%BD%BD%E7%83%AD%E6%A6%9C%E7%AC%AC%E4%B8%80.jpg">  </p>
+<p><img src="http://47.96.96.172:3000/img?md5=fe9f22684c46d80ff62e1d65cb33b825" alt="Oculus圣诞节AppStore下载热榜第一">  </p>
 </blockquote>
 <p>而在其他下载平台的增长数据也很亮眼：  </p>
 <blockquote>
-<p><img src="%E5%8E%86%E5%B9%B4%E5%9C%A3%E8%AF%9E%E6%9C%9F%E9%97%B4Oculus%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85%E6%83%85%E5%86%B5.jpg"><br>图片来源：<a target="_blank" rel="noopener" href="https://apptopia.com/">apptopia</a>   历年圣诞期间Oculus应用安装情况  </p>
+<p><img src="http://47.96.96.172:3000/img?md5=3118529dfae9f1b4d7e31b70480b6400" alt="历年圣诞期间Oculus应用安装情况"><br>图片来源：<a target="_blank" rel="noopener" href="https://apptopia.com/">apptopia</a>   历年圣诞期间Oculus应用安装情况  </p>
 </blockquote>
 <p>这个软件的最重要的作用就是激活 Meta(前Facebook) 出品的VR眼镜——<a target="_blank" rel="noopener" href="https://www.oculus.com/quest-2/">Oculus Quest 2</a>。<br>为什么都赶在圣诞节激话 VR 眼镜？<br>说明很多人拿 Quest 2 作礼品送人。<br>Quest 2 的用户越来越多。  </p>
 <h1 id="给普通人用的-VR-眼镜"><a href="#给普通人用的-VR-眼镜" class="headerlink" title="给普通人用的 VR 眼镜"></a>给普通人用的 VR 眼镜</h1><h2 id="首先是买得起了"><a href="#首先是买得起了" class="headerlink" title="首先是买得起了"></a>首先是买得起了</h2><p>想当年，一套能打游戏的 VR 眼镜怎么都要七、八千元人民币。<br>反观 Quest 2 作为 VR 眼镜真的足够便宜，现在亚马逊海淘，Quest 2 本体不到两千，加上运费和关税，两千三，半台手机的价格。<br>而且它的软件生态足够吸引普通人了。那怕这是一款两年前（2020年初上市）的产品，但是它的后续升级也表现的十分出色（比如通过固件更新，刷新率从 90Hz 提升到 120Hz）。<br>抖音作为中国近年来唯一在海外大杀特杀的移动互联网产品，突然被一个“初显疲态＂的互联网巨头打个挫手不及，想起字节跳动早就收购了 Pico VR，更加期待未来这些互联网巨头在“元宇宙”的各方面拼杀。<br>不论是“脸书”还是“脚书”，不论是字节跳动还是“比特跳动”，不论是谁这次“圣诞大捷”，VR这个产品形态在被提出的多年后终于被消费者”有热度地” 接受。  </p>
@@ -688,7 +694,7 @@
 </blockquote>
 <p>不过进展缓慢，受相关目镜结构复杂和材料成本的限制，成本限制，用户基数不足，难以反哺生态。<br>生态不丰富，潜在用户就没有意愿购买 VR 设备了。<br>所以才有了 Meta 亏本卖 Quest 2 ，自己组建团队开发软件破局。  </p>
 <h2 id="因为性能的提升，普通人买来也能有的不错的体验"><a href="#因为性能的提升，普通人买来也能有的不错的体验" class="headerlink" title="因为性能的提升，普通人买来也能有的不错的体验"></a>因为性能的提升，普通人买来也能有的不错的体验</h2><p>以往的 VR 设备只能说是“VR 头显”，也就是需要一台高性能的 PC 设备作为计算中心来处理各种图像和其他数据。<br>而 Quest 2 的性能已经可以运行一些轻量级的游戏，比如节奏光剑和乒乓球。<br>那么相对于“VR 头显”，面向的已经有了高性能 PC 的人群，Quest 2 能直接面向的人群则要广很多（基本不需要前置设备就能体验到不错的 VR 应用了）。  </p>
-<h1 id="VR-关注度也上来了"><a href="#VR-关注度也上来了" class="headerlink" title="VR 关注度也上来了"></a>VR 关注度也上来了</h1><p><img src="%E6%8A%96%E9%9F%B3%E6%90%9C%E7%B4%A2%E6%8C%87%E6%95%B0%E8%B6%8B%E5%8A%BF.png" alt="抖音搜索指数趋势"><br><img src="%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E6%90%9C%E7%B4%A2%E6%8C%87%E6%95%B0%E8%B6%8B%E5%8A%BF.png" alt="抖音搜索指数趋势">  </p>
+<h1 id="VR-关注度也上来了"><a href="#VR-关注度也上来了" class="headerlink" title="VR 关注度也上来了"></a>VR 关注度也上来了</h1><p><img src="http://47.96.96.172:3000/img?md5=83526f0d014e88385cc06f10a1da9d52" alt="抖音搜索指数趋势"><br><img src="http://47.96.96.172:3000/img?md5=355ad033af994825c67cb1e73d40c4c4" alt="今日头条搜索指数趋势">  </p>
 <h1 id="我们的圣诞攻势"><a href="#我们的圣诞攻势" class="headerlink" title="我们的圣诞攻势"></a>我们的圣诞攻势</h1><p>如果不从技术角度出发，仅从产品的市场表现来看，VR 设备的迅速铺开已经是板上钉钉的事情了。<br>任何新的信息接入形式（PC、智能手机），都需要一滚雪球的过程，而更值得思考的时在这个新信息时代进程中，我们处于什么位置，如何在这次攻势中主动出击，而不是被动防守。  </p>
 <h1 id="补充一些-Quest-2-的效果视频"><a href="#补充一些-Quest-2-的效果视频" class="headerlink" title="补充一些 Quest 2 的效果视频"></a>补充一些 Quest 2 的效果视频</h1><blockquote>
 <ul>
@@ -758,7 +764,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-31 11:53:29" itemprop="dateModified" datetime="2022-01-31T11:53:29+08:00">2022-01-31</time>
+                <time title="修改时间：2022-02-15 12:53:16" itemprop="dateModified" datetime="2022-02-15T12:53:16+08:00">2022-02-15</time>
               </span>
 
           
@@ -779,7 +785,7 @@
 </blockquote>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>越来越多人学习编程，但是他们并没有理解代码运行的原理。计算机相关专业的人中，相当一部分也不能说出个所以然，只能把计算机看作一个黑匣子，学习编程语言就像是在霍格沃兹学习魔咒。<br>任何事物的出现都是由前因的。计算机也是有它的理论和物质基础的。<br>理解了计算机计算的原理及实现，对于克服学编程的畏难心理是很有帮助的。  </p>
 <h1 id="进制是可以互相转化的"><a href="#进制是可以互相转化的" class="headerlink" title="进制是可以互相转化的"></a>进制是可以互相转化的</h1><p>日常使用的十进制，只用个位是没有办法表示出“十”的，“9+1”就需要进位。<br>二进制就是只用个位没有办法表示出“2”，想要表示“1+1”的话，不能写“2”，而要写“10”，为了避免歧义，在书写的时候会在后面加上括起来的二，以示二进制，比如“10(2)”。<br>同理，“10(2)=2(10)”，二进制的“10”等于十进制的“2”。<br>有一天外星人告诉你圆周率约是：11.00100100001111110110100110100010010110110000100101<br>你应该要能换算成：3.1415926<br><strong>不同的进制下，数学运算结果是等价的。</strong><br>所以，要是设计<strong>计算出十进制结果</strong>的自动运算机器太麻烦，那么造一台<strong>计算出二进制结果</strong>的运算机器，其实效果是一样的。<br>二进制下是如何做计算的呢？  </p>
-<h1 id="生活随处可见布尔运算"><a href="#生活随处可见布尔运算" class="headerlink" title="生活随处可见布尔运算"></a>生活随处可见布尔运算</h1><p>实际上，布尔运算很早就被发明了。<br>布尔是英国的数学家，在1847年发明了处理二值之间关系的逻辑数学计算法，包括联合、相交、相减。<br>与、或、非三种布尔运算，实质上是对二进制输入（真或假、1或0）的某种处理，做单一输出。<br><img src="%E7%9C%9F%E5%80%BC%E8%A1%A8.jpg"><br><img src="%E4%B8%8E%E6%88%96%E9%9D%9E%E8%BF%90%E7%AE%97.jpg"><br>直接在纸面理解，其实也不复杂，但是太<strong>抽象</strong>了。<br>我找到了一个很形象的<a target="_blank" rel="noopener" href="https://weibo.com/6105753431/Im8wYsdq9">例子</a>，强烈推荐你去看一下。<br>后来人们又发现,这样的过程（布尔运算），还可以用<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zh411f7bv">电路实现</a>。这样子的电路被叫做逻辑电路。  </p>
+<h1 id="生活随处可见布尔运算"><a href="#生活随处可见布尔运算" class="headerlink" title="生活随处可见布尔运算"></a>生活随处可见布尔运算</h1><p>实际上，布尔运算很早就被发明了。<br>布尔是英国的数学家，在1847年发明了处理二值之间关系的逻辑数学计算法，包括联合、相交、相减。<br>与、或、非三种布尔运算，实质上是对二进制输入（真或假、1或0）的某种处理，做单一输出。<br><img src="http://47.96.96.172:3000/img?md5=8cd1e28bd7f8fce24694fb81698e24c2"><br><img src="http://47.96.96.172:3000/img?md5=d58ab52852c586e8ba416b465912cd7e"><br>直接在纸面理解，其实也不复杂，但是太<strong>抽象</strong>了。<br>我找到了一个很形象的<a target="_blank" rel="noopener" href="https://weibo.com/6105753431/Im8wYsdq9">例子</a>，强烈推荐你去看一下。<br>后来人们又发现,这样的过程（布尔运算），还可以用<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zh411f7bv">电路实现</a>。这样子的电路被叫做逻辑电路。  </p>
 <h1 id="从布尔到加法运算"><a href="#从布尔到加法运算" class="headerlink" title="从布尔到加法运算"></a>从布尔到加法运算</h1><p>光有简单的逻辑电路，什么也做不了，真正让电路在普通人理解层面的解决数学问题，归功于下面这个发现：<br>当你要做一位二进制加法，你把所有的可能都列出来：  </p>
 <blockquote>
 <p>X+Y=Z<br>0+0=0<br>0+1=1<br>1+0=1<br>1+1=10</p>
@@ -865,10 +871,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-19 12:02:11 / 修改时间：12:58:38" itemprop="dateCreated datePublished" datetime="2022-01-19T12:02:11+08:00">2022-01-19</time>
+              <time title="创建时间：2022-01-19 12:02:11" itemprop="dateCreated datePublished" datetime="2022-01-19T12:02:11+08:00">2022-01-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-15 12:51:41" itemprop="dateModified" datetime="2022-02-15T12:51:41+08:00">2022-02-15</time>
+              </span>
 
           
 
@@ -892,13 +904,13 @@
 </blockquote>
 <h1 id="两种可能："><a href="#两种可能：" class="headerlink" title="两种可能："></a>两种可能：</h1><h2 id="8086-时代不允许这复杂的设计了："><a href="#8086-时代不允许这复杂的设计了：" class="headerlink" title="8086 时代不允许这复杂的设计了："></a>8086 时代不允许这复杂的设计了：</h2><p>北极在知乎上的<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/43608287/answer/96163327">回答</a>:  </p>
 <blockquote>
-<p>我个人觉得，就是编码太麻烦，opcode不太够用，指令太长。<br>……<br><img src="8086%E5%AF%84%E5%AD%98%E5%99%A8%E7%BC%96%E7%A0%81.jpg"><br>因为MOV操作的寄存器有两个，其中的一个还可能是内存，还可能是寄存器组合，这样的话，2*3bit（注：原文应指8bit）用于描述寄存器，剩下2个bit用于描述是内存还是别的东西，这样算下来，一个字节勉强够用。而如果把段寄存器加上，就需要4个bit编码一个寄存器，仅仅描述两个寄存器就需要一个字节，加上其它的修饰，MOV指令长度就需要整体增加一个字节，这对于过去的计算机来说，开销无疑是非常巨大的，过去计算机内存都是以KB计算的，每个MOV指令增加一个字节，在设计者看来是无法接受的。  </p>
+<p>我个人觉得，就是编码太麻烦，opcode不太够用，指令太长。<br>……<br><img src="http://47.96.96.172:3000/img?md5=03ef671730d9092a35e03561f5f0c43c"><br>因为MOV操作的寄存器有两个，其中的一个还可能是内存，还可能是寄存器组合，这样的话，2*3bit（注：原文应指8bit）用于描述寄存器，剩下2个bit用于描述是内存还是别的东西，这样算下来，一个字节勉强够用。而如果把段寄存器加上，就需要4个bit编码一个寄存器，仅仅描述两个寄存器就需要一个字节，加上其它的修饰，MOV指令长度就需要整体增加一个字节，这对于过去的计算机来说，开销无疑是非常巨大的，过去计算机内存都是以KB计算的，每个MOV指令增加一个字节，在设计者看来是无法接受的。  </p>
 </blockquote>
 <p>这大概就是在说，为了节省节省开销，没有更多空间留给 <code>mov es imd</code> 形式的指令设计了。<br>这与 Paul 的<a target="_blank" rel="noopener" href="https://qr.ae/pG3Ly5">回答</a>中的评论是一致的：  </p>
 <blockquote>
 <p>I don’t think it’s impossible to fit it in, but rather omitting it simplifies the processor design, and those times are different from today in which you add extra complexity for performance.<br>译：我不认为不可能设计并适配它（指<code>mov es imd</code> 形式的指令），而是省略它可以简化处理器的设计，而那个时代与今天这为了性能而增加额外的复杂性的时代不同。  </p>
 </blockquote>
-<h2 id="安全性问题："><a href="#安全性问题：" class="headerlink" title="安全性问题："></a>安全性问题：</h2><p>CSDN 上有一个很老的<a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/340215235">帖子</a>，其中有一个回复考虑到了安全性的问题：<br><img src="burningstyle%E7%9A%84%E5%9B%9E%E5%A4%8D.jpg"><br>在 Paul 的<a target="_blank" rel="noopener" href="https://qr.ae/pG3Ly5">回答</a>中也有提到：  </p>
+<h2 id="安全性问题："><a href="#安全性问题：" class="headerlink" title="安全性问题："></a>安全性问题：</h2><p>CSDN 上有一个很老的<a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/340215235">帖子</a>，其中有一个回复考虑到了安全性的问题：<br><img src="http://47.96.96.172:3000/img?md5=b533da16a150f658ee9becbf82a7d06a"><br>在 Paul 的<a target="_blank" rel="noopener" href="https://qr.ae/pG3Ly5">回答</a>中也有提到：  </p>
 <blockquote>
 <p>Now storing an immediate into a segment register has a second issue — if you’re not the OS, how do you know that that memory region doesn’t belong to someone else?<br>译：现在，将一个即时数据存储到段寄存器中还有一个问题–如果你不是操作系统，你怎么知道那个内存区域不属于其他人？  </p>
 </blockquote>
