@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"tymon42.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="Quorum 是什么Quorum 是 Rum System 的具体实现，它能让你自己搭建一个可以立即使用的节点并让你方便地和其他节点交换信息。全过程不依赖中心化服务器（商）。   环境准备 Golang 1.16.5   一台联网的电脑    获取 Quorum如果你要编译（可以跳过）：123$ git clone https:&#x2F;&#x2F;github.com&#x2F;rumsystem&#x2F;quorum.git$">
+  <meta name="description" content="Quorum 是什么Quorum 是 Rum System 的具体实现，它能让你自己搭建一个可以立即使用的节点并让你方便地和其他节点交换信息。全过程不依赖中心化服务器（商）。   这篇文章的目的这个项目还在持续开发中，所以各方面资料较少，所以这里我想分享一个相对方便的上手方式。   环境准备 Golang 1.16.5 (其他版本我没测试过，理论上 1.13 以上都没问题)   一台联网的电脑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to play with Quorum">
 <meta property="og:url" content="https://tymon42.github.io/2022/04How-to-play-with-Quorum/index.html">
 <meta property="og:site_name" content="Tymon-海鱼Harry 的 Blog">
-<meta property="og:description" content="Quorum 是什么Quorum 是 Rum System 的具体实现，它能让你自己搭建一个可以立即使用的节点并让你方便地和其他节点交换信息。全过程不依赖中心化服务器（商）。   环境准备 Golang 1.16.5   一台联网的电脑    获取 Quorum如果你要编译（可以跳过）：123$ git clone https:&#x2F;&#x2F;github.com&#x2F;rumsystem&#x2F;quorum.git$">
+<meta property="og:description" content="Quorum 是什么Quorum 是 Rum System 的具体实现，它能让你自己搭建一个可以立即使用的节点并让你方便地和其他节点交换信息。全过程不依赖中心化服务器（商）。   这篇文章的目的这个项目还在持续开发中，所以各方面资料较少，所以这里我想分享一个相对方便的上手方式。   环境准备 Golang 1.16.5 (其他版本我没测试过，理论上 1.13 以上都没问题)   一台联网的电脑">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-17T02:23:41.000Z">
-<meta property="article:modified_time" content="2022-04-17T03:16:31.025Z">
+<meta property="article:modified_time" content="2022-04-17T03:25:49.731Z">
 <meta property="article:author" content="Tymon-海鱼Harry">
 <meta name="twitter:card" content="summary">
 
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-04-17 10:23:41 / 修改时间：11:16:31" itemprop="dateCreated datePublished" datetime="2022-04-17T10:23:41+08:00">2022-04-17</time>
+              <time title="创建时间：2022-04-17 10:23:41 / 修改时间：11:25:49" itemprop="dateCreated datePublished" datetime="2022-04-17T10:23:41+08:00">2022-04-17</time>
             </span>
 
           
@@ -222,8 +222,9 @@
 
       
         <h1 id="Quorum-是什么"><a href="#Quorum-是什么" class="headerlink" title="Quorum 是什么"></a>Quorum 是什么</h1><p>Quorum 是 <a target="_blank" rel="noopener" href="https://rumsystem.net/">Rum System</a> 的具体实现，它能让你自己搭建一个可以立即使用的节点并让你方便地和其他节点交换信息。全过程不依赖中心化服务器（商）。  </p>
+<h1 id="这篇文章的目的"><a href="#这篇文章的目的" class="headerlink" title="这篇文章的目的"></a>这篇文章的目的</h1><p>这个项目还在持续开发中，所以各方面资料较少，所以这里我想分享一个相对方便的上手方式。  </p>
 <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ul>
-<li>Golang 1.16.5  </li>
+<li>Golang 1.16.5 (其他版本我没测试过，理论上 1.13 以上都没问题)  </li>
 <li>一台联网的电脑  </li>
 </ul>
 <h1 id="获取-Quorum"><a href="#获取-Quorum" class="headerlink" title="获取 Quorum"></a>获取 Quorum</h1><h2 id="如果你要编译（可以跳过）："><a href="#如果你要编译（可以跳过）：" class="headerlink" title="如果你要编译（可以跳过）："></a>如果你要编译（可以跳过）：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/rumsystem/quorum.git</span><br><span class="line">$ <span class="built_in">cd</span> quorum</span><br><span class="line">$ make buildall</span><br></pre></td></tr></table></figure>
@@ -237,20 +238,6 @@
 </ul>
 <p>事实上，后两者是同等级的，只是名字不一样。<br>官方的教程在<a target="_blank" rel="noopener" href="https://github.com/rumsystem/quorum/blob/main/Tutorial.md#setup-local-test-network">这</a>, 接下来我直接复制过来：</p>
 <h2 id="Setup-local-test-network"><a href="#Setup-local-test-network" class="headerlink" title="Setup local test network"></a>Setup local test network</h2><ol>
-<li><p>Download and install go (ver 1.15.2)</p>
-</li>
-<li><p>Clone quorum project from <code>https://github.com/rumsystem/quorum.git</code></p>
-</li>
-<li><p>3 local nodes will be created</p>
-</li>
-</ol>
-<ul>
-<li><code>bootstrap node</code> (bootstrap)</li>
-<li><code>owner node</code>   (group owner node)</li>
-<li><code>user node</code>    (group user node)</li>
-</ul>
-<p>follow steps below.</p>
-<ol start="4">
 <li>cd to quorum souce code path and create <code>config/</code> dir</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p config</span><br></pre></td></tr></table></figure>
@@ -269,6 +256,9 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run cmd/main.go -peername owner -listen /ip4/127.0.0.1/tcp/7002 -apilisten :8002 -peer /ip4/127.0.0.1/tcp/10666/p2p/&lt;QmR1VFquywCnakSThwWQY6euj9sRBn3586LDUm5vsfCDJR&gt; -configdir config -datadir data -keystoredir ownerkeystore  -jsontracer ownertracer.json -debug=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>PS: 这里有个小坑，启动指令里面的 <code>HOST_ID</code> 部分是不需要加 <code>&lt;&gt;</code> 的，原文意思是这个地方需要替换，要替换为你启动 bootstrap 是得到的 <code>HOST_ID</code>。<br>你只需要形如：<code>go run cmd/main.go -peername owner -listen /ip4/127.0.0.1/tcp/7002 -apilisten :8002 -peer /ip4/127.0.0.1/tcp/10666/p2p/QmR1VFquywCnakSThwWQY6euj9sRBn3586LDUm5vsfCDJR -configdir config -datadir data -keystoredir ownerkeystore  -jsontracer ownertracer.json -debug=true</code> 即可。后面的指令也同理。这里提出以防呆。  </p>
+</blockquote>
 <ul>
 <li>For the first time, user will be asked to input a password for the node, if not given, a password will be created for the node</li>
 <li>After a password is created, next time user will be asked to input the password to open node.</li>
@@ -287,10 +277,11 @@
 <li>Onewr：<code>https://127.0.0.1:8002</code></li>
 <li>User: <code>https://127.0.0.1:8003</code></li>
 </ul>
-<p>这样，只要切换不同的环境，你就能操作节点。<br>我推荐你先从 <code>Node</code> 系的接口开始测试，然后可以试试自己建组（Group）并生成种子，让另一个节点加入，最后都两个节点都在组里发发消息。  </p>
+<p>这样，只要切换不同的环境，你就能操作节点。  </p>
+<p>我推荐你先从 <code>Node</code> 系的接口开始测试，然后可以试试自己建组（Group）并生成种子，让另一个节点加入，最后都两个节点都在组里发发消息。  </p>
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>其实 Quorum 的应用开发思路很清晰，只需要在你的程序运行时同时启动 Quorum，指定好交互端口，在自己的应用内封装好 HTTP 请求，就可像数据库一样读写（分享）数据。  </p>
 <p>如果你找到了这篇文的错误，欢迎你指出；如果你有任何关于 Quorum 的事情想和我讨论，我也同样欢迎。  </p>
-<p>我的 Mixin ID：<code>37206436</code><br>我的邮箱： <code>tymon42@outlook.com</code></p>
+<p>我的 Mixin ID：<code>37206436</code><br>我的邮箱： <code>tymon42@outlook.com</code>  </p>
 
     </div>
 
@@ -368,7 +359,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Quorum-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Quorum 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-Quorum"><span class="nav-number">3.</span> <span class="nav-text">获取 Quorum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A6%81%E7%BC%96%E8%AF%91%EF%BC%88%E5%8F%AF%E4%BB%A5%E8%B7%B3%E8%BF%87%EF%BC%89%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">如果你要编译（可以跳过）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E7%9C%8B-API-%E6%96%87%E6%A1%A3%E5%85%88"><span class="nav-number">3.2.</span> <span class="nav-text">运行前，可以看看 API 文档先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9"><span class="nav-number">3.3.</span> <span class="nav-text">启动节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-local-test-network"><span class="nav-number">3.4.</span> <span class="nav-text">Setup local test network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E8%8A%82%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">3.4.1.</span> <span class="nav-text">三个节点是什么样子的结构？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%80%8E%E4%B9%88%E7%94%A8-APIFOX-%E4%BA%A4%E4%BA%92%EF%BC%9F"><span class="nav-number">3.5.</span> <span class="nav-text">启动节点之后，怎么用 APIFOX 交互？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Quorum-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Quorum 是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">这篇文章的目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-Quorum"><span class="nav-number">4.</span> <span class="nav-text">获取 Quorum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A6%81%E7%BC%96%E8%AF%91%EF%BC%88%E5%8F%AF%E4%BB%A5%E8%B7%B3%E8%BF%87%EF%BC%89%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">如果你要编译（可以跳过）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E7%9C%8B-API-%E6%96%87%E6%A1%A3%E5%85%88"><span class="nav-number">4.2.</span> <span class="nav-text">运行前，可以看看 API 文档先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9"><span class="nav-number">4.3.</span> <span class="nav-text">启动节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-local-test-network"><span class="nav-number">4.4.</span> <span class="nav-text">Setup local test network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E8%8A%82%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E5%AD%90%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">4.4.1.</span> <span class="nav-text">三个节点是什么样子的结构？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%80%8E%E4%B9%88%E7%94%A8-APIFOX-%E4%BA%A4%E4%BA%92%EF%BC%9F"><span class="nav-number">4.5.</span> <span class="nav-text">启动节点之后，怎么用 APIFOX 交互？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">5.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
