@@ -474,7 +474,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 14:08:17" itemprop="dateModified" datetime="2022-02-15T14:08:17+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:55:37" itemprop="dateModified" datetime="2022-04-25T21:55:37+08:00">2022-04-25</time>
               </span>
 
           
@@ -488,25 +488,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-# 前言  
-操作系统（OS）内部有许多进程管理，只要 OS 被正确加载了，那么什么软件都可以被 OS 正确地运行。  
-但是在计算机通电的时候，硬盘里的 OS 是怎么进入到内存并运行的呢？  
-大体是这样一个流程：  
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>操作系统（OS）内部有许多进程管理，只要 OS 被正确加载了，那么什么软件都可以被 OS 正确地运行。<br>但是在计算机通电的时候，硬盘里的 OS 是怎么进入到内存并运行的呢？<br>大体是这样一个流程：  </p>
 <!-- ![开机启动流程.jpg](http://47.96.96.172:3000/img?md5=7fc55271c9a6820690a6a110c95e0b08)   -->
-![开机启动流程.jpg](开机启动流程.jpg)
-# 什么叫“加载”  
-加载在下文的意思，基本上就是指，把储存器上的东西复制到内存里。  
-# 从通电到 BIOS  
-## BIOS  加载  
-是用来完成加载辅存中的任务的的程序。  
-它首先存在 ROM 里面。  
-## ROM  
-[ROM(Read Only Memory)](https://en.wikipedia.org/wiki/Read-only_memory)    
->In modern PCs, "ROM" is used to store the basic bootstrapping [firmware](https://en.wikipedia.org/wiki/Firmware "Firmware") for the processor, as well as the various [firmware](https://en.wikipedia.org/wiki/Firmware "Firmware") needed to internally control self-contained devices such as [graphic cards](https://en.wikipedia.org/wiki/Graphic_cards "Graphic cards"), [hard disk drives](https://en.wikipedia.org/wiki/Hard_disk_drive "Hard disk drive"), [solid state drives](https://en.wikipedia.org/wiki/Solid_state_drive "Solid state drive"), [optical disc drives](https://en.wikipedia.org/wiki/Optical_disc_drive "Optical disc drive"), [TFT screens](https://en.wikipedia.org/wiki/TFT_screen "TFT screen"), etc., in the system. Today, many of these "read-only" memories – especially the [BIOS](https://en.wikipedia.org/wiki/BIOS "BIOS")/[UEFI](https://en.wikipedia.org/wiki/UEFI "UEFI") – are often replaced with [EEPROM](https://en.wikipedia.org/wiki/EEPROM "EEPROM") or [Flash memory](https://en.wikipedia.org/wiki/Flash_memory "Flash memory") (see below), to permit in-place reprogramming should the need for a firmware upgrade arise. However, simple and mature sub-systems (such as the keyboard or some communication controllers in the integrated circuits on the main board, for example) may employ mask ROM or [OTP](https://en.wikipedia.org/wiki/Programmable_read-only_memory "Programmable read-only memory") (one-time programmable).    
->
-> 在现代PC中，"ROM "被用来存储处理器的基本启动固件，以及在系统中内部控制独立设备所需的各种固件，如图形卡、硬盘驱动器、固态驱动器、光盘驱动器、TFT屏幕等。今天，许多这些 "只读 "存储器--特别是BIOS/UEFI--通常被EEPROM或Flash存储器（见下文）取代，以便在需要升级固件时允许就地重新编程。然而，简单而成熟的子系统（例如键盘或主板上集成电路中的一些通信控制器）可能采用掩膜ROM或OTP（一次性可编程）。  
-
+<p><img src="%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.jpg" alt="开机启动流程.jpg"></p>
+<h1 id="什么叫“加载”"><a href="#什么叫“加载”" class="headerlink" title="什么叫“加载”"></a>什么叫“加载”</h1><p>加载在下文的意思，基本上就是指，把储存器上的东西复制到内存里。  </p>
+<h1 id="从通电到-BIOS"><a href="#从通电到-BIOS" class="headerlink" title="从通电到 BIOS"></a>从通电到 BIOS</h1><h2 id="BIOS-加载"><a href="#BIOS-加载" class="headerlink" title="BIOS  加载"></a>BIOS  加载</h2><p>是用来完成加载辅存中的任务的的程序。<br>它首先存在 ROM 里面。  </p>
+<h2 id="ROM"><a href="#ROM" class="headerlink" title="ROM"></a>ROM</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Read-only_memory">ROM(Read Only Memory)</a>    </p>
+<blockquote>
+<p>In modern PCs, “ROM” is used to store the basic bootstrapping <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Firmware" title="Firmware">firmware</a> for the processor, as well as the various <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Firmware" title="Firmware">firmware</a> needed to internally control self-contained devices such as <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Graphic_cards" title="Graphic cards">graphic cards</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hard_disk_drive" title="Hard disk drive">hard disk drives</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Solid_state_drive" title="Solid state drive">solid state drives</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Optical_disc_drive" title="Optical disc drive">optical disc drives</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/TFT_screen" title="TFT screen">TFT screens</a>, etc., in the system. Today, many of these “read-only” memories – especially the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/BIOS" title="BIOS">BIOS</a>/<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/UEFI" title="UEFI">UEFI</a> – are often replaced with <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/EEPROM" title="EEPROM">EEPROM</a> or <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Flash_memory" title="Flash memory">Flash memory</a> (see below), to permit in-place reprogramming should the need for a firmware upgrade arise. However, simple and mature sub-systems (such as the keyboard or some communication controllers in the integrated circuits on the main board, for example) may employ mask ROM or <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Programmable_read-only_memory" title="Programmable read-only memory">OTP</a> (one-time programmable).    </p>
+<p>在现代PC中，”ROM “被用来存储处理器的基本启动固件，以及在系统中内部控制独立设备所需的各种固件，如图形卡、硬盘驱动器、固态驱动器、光盘驱动器、TFT屏幕等。今天，许多这些 “只读 “存储器–特别是BIOS/UEFI–通常被EEPROM或Flash存储器（见下文）取代，以便在需要升级固件时允许就地重新编程。然而，简单而成熟的子系统（例如键盘或主板上集成电路中的一些通信控制器）可能采用掩膜ROM或OTP（一次性可编程）。  </p>
+</blockquote>
 <p>主板上焊有一块 ROM，里面存上了 BIOS 系统，通电时，会自动映射到内存里。<br>现在 BIOS 已经被加载到内存里了，那么BIOS 映射在什么位置？  </p>
 <blockquote>
 <p>BIOS 位于 0xF0000 ~ 0xFFFFF (64K)。<br>BIOS 启动块位于 0xFE000 ~ 0xFFFFF (8K)。  </p>
@@ -577,7 +568,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 13:23:28" itemprop="dateModified" datetime="2022-02-15T13:23:28+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:55:46" itemprop="dateModified" datetime="2022-04-25T21:55:46+08:00">2022-04-25</time>
               </span>
 
           
@@ -591,9 +582,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-# 总论  
-VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82%E5%89%8D%E6%97%A0%E6%B3%95%E7%BB%93%E6%9D%9F%E7%9A%84VR%E6%94%BB%E5%8A%BF/" title="圣诞节前无法结束的VR攻势">圣诞节前无法结束的VR攻势</a>》已经提到过了，
+          <h1 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h1><p>VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82%E5%89%8D%E6%97%A0%E6%B3%95%E7%BB%93%E6%9D%9F%E7%9A%84VR%E6%94%BB%E5%8A%BF/" title="圣诞节前无法结束的VR攻势">圣诞节前无法结束的VR攻势</a>》已经提到过了，</p>
+
       
     </div>
 
@@ -736,7 +726,7 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 13:23:40" itemprop="dateModified" datetime="2022-02-15T13:23:40+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:56:03" itemprop="dateModified" datetime="2022-04-25T21:56:03+08:00">2022-04-25</time>
               </span>
 
           
@@ -750,10 +740,9 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-> 中学的尴尬在于，他没能让中考、高考落榜的学生准备好进入社会。  
-> 从某个层面来说，**中学从没把学生当人来教育**，它只是在筛选。  
-
+          <blockquote>
+<p>中学的尴尬在于，他没能让中考、高考落榜的学生准备好进入社会。<br>从某个层面来说，<strong>中学从没把学生当人来教育</strong>，它只是在筛选。  </p>
+</blockquote>
 <h1 id="为什么中国教育变革要关注中学"><a href="#为什么中国教育变革要关注中学" class="headerlink" title="为什么中国教育变革要关注中学"></a>为什么中国教育变革要关注中学</h1><p>中国中学特别重视中考、高考前的一年复习，我就是在这种模式下成长的，我自然重视关键点前的一个时期。<br>而我认为的教育的最终目的是进入社会，而中国目前只有 5% 的大专及本科学历人口，而所有人必然走向社会，那么我就默认中国新生代进入社会前的一个学校阶段是中学，而不是高等教育。  </p>
 <h1 id="为甚么要强调中国教育？"><a href="#为甚么要强调中国教育？" class="headerlink" title="为甚么要强调中国教育？"></a>为甚么要强调<strong>中国</strong>教育？</h1><p>这倒不是因为我是带路党，我盲目崇拜所谓的西方教育和西方模式。<br>欧美的社会发展阶段和我国的有差异。中国处于社会主义初级阶段的情况依旧，很多时候提到的<strong>中国特色</strong>方案，前提是有<strong>中国特色问题（国情）</strong>。<br>所以强调<strong>中国</strong>二字，主要是要具体分析中国问题，而由此对照引出的中国之外的一些情况，并不是提倡要照搬，而是了解其他国家的思路。毕竟人类各个社会的发展之间是有共性的，一些方法论是通用的，对照分析往往能够事半功倍。而本文也会提供一些国情下的特色解决方案。  </p>
 <h1 id="中学的目的与运作"><a href="#中学的目的与运作" class="headerlink" title="中学的目的与运作"></a>中学的目的与运作</h1><h2 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h2><p>改革开放，百废待兴。<br>这一句话写尽了当时社会发展的窘境，各个领域的高素质劳动力（参与体力劳动和脑力劳动）太缺少了。市场经济的竞争已经参与到社会的方方面面，而大学的明儿就这么点，那么谁有资格上大学？就是靠高考来筛选出一部分人，这部分人有实力（高考标准下）也很幸运（社会采用了高考标准来筛选）。<br><strong>筛选</strong>，这就是中考和高考的目的，也就是中学的目的。  </p>
@@ -868,7 +857,7 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 14:07:16" itemprop="dateModified" datetime="2022-02-15T14:07:16+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:56:06" itemprop="dateModified" datetime="2022-04-25T21:56:06+08:00">2022-04-25</time>
               </span>
 
           
@@ -882,14 +871,11 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-# Oculus 的圣诞大捷  
-二战时，欧洲的小胡子想圣诞节前结束战争，而美国人在圣诞节之后才开始攻势。  
-如今的美国人也开始了一段[新的圣诞攻势](https://techcrunch.com/2022/01/06/meta-had-a-good-holiday-as-its-oculus-vr-companion-app-gained-2m-downloads-since-christmas)。  
-在抖音霸榜不知多久之后，App Store 的下载热霸久违地又见到外国公司的APP——Oculus 拔得头筹。  
+          <h1 id="Oculus-的圣诞大捷"><a href="#Oculus-的圣诞大捷" class="headerlink" title="Oculus 的圣诞大捷"></a>Oculus 的圣诞大捷</h1><p>二战时，欧洲的小胡子想圣诞节前结束战争，而美国人在圣诞节之后才开始攻势。<br>如今的美国人也开始了一段<a target="_blank" rel="noopener" href="https://techcrunch.com/2022/01/06/meta-had-a-good-holiday-as-its-oculus-vr-companion-app-gained-2m-downloads-since-christmas">新的圣诞攻势</a>。<br>在抖音霸榜不知多久之后，App Store 的下载热霸久违地又见到外国公司的APP——Oculus 拔得头筹。  </p>
 <!-- > ![Oculus圣诞节AppStore下载热榜第一](http://47.96.96.172:3000/img?md5=fe9f22684c46d80ff62e1d65cb33b825)   -->
-> ![Oculus圣诞节AppStore下载热榜第一](Oculus圣诞节AppStore下载热榜第一.jpg)
-
+<blockquote>
+<p><img src="Oculus%E5%9C%A3%E8%AF%9E%E8%8A%82AppStore%E4%B8%8B%E8%BD%BD%E7%83%AD%E6%A6%9C%E7%AC%AC%E4%B8%80.jpg" alt="Oculus圣诞节AppStore下载热榜第一"></p>
+</blockquote>
 <p>而在其他下载平台的增长数据也很亮眼：  </p>
 <!-- > ![历年圣诞期间Oculus应用安装情况](http://47.96.96.172:3000/img?md5=3118529dfae9f1b4d7e31b70480b6400) -->
 <blockquote>
@@ -978,7 +964,7 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 14:06:18" itemprop="dateModified" datetime="2022-02-15T14:06:18+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:55:59" itemprop="dateModified" datetime="2022-04-25T21:55:59+08:00">2022-04-25</time>
               </span>
 
           
@@ -992,12 +978,11 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-如果非要有一个开始，我愿意是香农写下“只是用继电器和开关，就能实现对两数自动求和”的那个夜晚。  
-> 使用继电电路进行复杂的数学运算是可能的。事实上，任何可以用如果、或、与等字词在有限步内加以完整描述的操作，都可以用继电器自动完成。
-> 
-> ——香农  
-
+          <p>如果非要有一个开始，我愿意是香农写下“只是用继电器和开关，就能实现对两数自动求和”的那个夜晚。  </p>
+<blockquote>
+<p>使用继电电路进行复杂的数学运算是可能的。事实上，任何可以用如果、或、与等字词在有限步内加以完整描述的操作，都可以用继电器自动完成。</p>
+<p>——香农  </p>
+</blockquote>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>越来越多人学习编程，但是他们并没有理解代码运行的原理。计算机相关专业的人中，相当一部分也不能说出个所以然，只能把计算机看作一个黑匣子，学习编程语言就像是在霍格沃兹学习魔咒。<br>任何事物的出现都是由前因的。计算机也是有它的理论和物质基础的。<br>理解了计算机计算的原理及实现，对于克服学编程的畏难心理是很有帮助的。  </p>
 <h1 id="进制是可以互相转化的"><a href="#进制是可以互相转化的" class="headerlink" title="进制是可以互相转化的"></a>进制是可以互相转化的</h1><p>日常使用的十进制，只用个位是没有办法表示出“十”的，“9+1”就需要进位。<br>二进制就是只用个位没有办法表示出“2”，想要表示“1+1”的话，不能写“2”，而要写“10”，为了避免歧义，在书写的时候会在后面加上括起来的二，以示二进制，比如“10(2)”。<br>同理，“10(2)=2(10)”，二进制的“10”等于十进制的“2”。<br>有一天外星人告诉你圆周率约是：11.00100100001111110110100110100010010110110000100101<br>你应该要能换算成：3.1415926<br><strong>不同的进制下，数学运算结果是等价的。</strong><br>所以，要是设计<strong>计算出十进制结果</strong>的自动运算机器太麻烦，那么造一台<strong>计算出二进制结果</strong>的运算机器，其实效果是一样的。<br>二进制下是如何做计算的呢？  </p>
 <h1 id="生活随处可见布尔运算"><a href="#生活随处可见布尔运算" class="headerlink" title="生活随处可见布尔运算"></a>生活随处可见布尔运算</h1><p>实际上，布尔运算很早就被发明了。<br>布尔是英国的数学家，在1847年发明了处理二值之间关系的逻辑数学计算法，包括联合、相交、相减。<br>与、或、非三种布尔运算，实质上是对二进制输入（真或假、1或0）的某种处理，做单一输出。  </p>
@@ -1098,7 +1083,7 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 14:05:09" itemprop="dateModified" datetime="2022-02-15T14:05:09+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:55:50" itemprop="dateModified" datetime="2022-04-25T21:55:50+08:00">2022-04-25</time>
               </span>
 
           
@@ -1112,9 +1097,7 @@ VR 欣欣向荣的景象发展在《<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82
     <div class="post-body" itemprop="articleBody">
 
       
-          <meta name="referrer" content="no-referrer"/>
-
-<blockquote>
+          <blockquote>
 <p>为什么在8086处理器不能直接把立即数存入段寄存器？<br>Why can’t we move an immediate operand to an ES register in 8086?  </p>
 </blockquote>
 <h1 id="向段寄存器存内容的常见两步"><a href="#向段寄存器存内容的常见两步" class="headerlink" title="向段寄存器存内容的常见两步"></a>向段寄存器存内容的常见两步</h1><p>如果有一个段地址，需要存入段寄存器（ES），在 8086 处理器中，通常要这样做：  </p>
