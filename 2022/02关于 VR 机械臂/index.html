@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"tymon42.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="# 为什么要设计 VR 机械臂   ## 现有 VR 的问题   现在流行的 VR 设备（圣诞节前无法结束的VR攻势），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）">
+  <meta name="description" content="为什么要设计 VR 机械臂现有 VR 的问题现在流行的 VR 设备（圣诞节前无法结束的VR攻势），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）。VR 头显可以让人类以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于 VR 机械臂">
 <meta property="og:url" content="https://tymon42.github.io/2022/02%E5%85%B3%E4%BA%8E%20VR%20%E6%9C%BA%E6%A2%B0%E8%87%82/index.html">
 <meta property="og:site_name" content="Tymon-海鱼Harry 的 Blog">
-<meta property="og:description" content="# 为什么要设计 VR 机械臂   ## 现有 VR 的问题   现在流行的 VR 设备（圣诞节前无法结束的VR攻势），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）">
+<meta property="og:description" content="为什么要设计 VR 机械臂现有 VR 的问题现在流行的 VR 设备（圣诞节前无法结束的VR攻势），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）。VR 头显可以让人类以">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-10T14:04:52.000Z">
-<meta property="article:modified_time" content="2022-02-15T05:23:53.292Z">
+<meta property="article:modified_time" content="2022-04-25T13:55:10.107Z">
 <meta property="article:author" content="Tymon-海鱼Harry">
 <meta property="article:tag" content="VR">
 <meta property="article:tag" content="元宇宙">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-15 13:23:53" itemprop="dateModified" datetime="2022-02-15T13:23:53+08:00">2022-02-15</time>
+                <time title="修改时间：2022-04-25 21:55:10" itemprop="dateModified" datetime="2022-04-25T21:55:10+08:00">2022-04-25</time>
               </span>
 
           
@@ -229,26 +229,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <meta name="referrer" content="no-referrer"/>
-# 为什么要设计 VR 机械臂  
-## 现有 VR 的问题  
-现在流行的 VR 设备（<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82%E5%89%8D%E6%97%A0%E6%B3%95%E7%BB%93%E6%9D%9F%E7%9A%84VR%E6%94%BB%E5%8A%BF/" title="圣诞节前无法结束的VR攻势">圣诞节前无法结束的VR攻势</a>），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）。  
-VR 头显可以让人类以更沉浸的形式接入互联网，更是极大拓宽了人眼接入互联网的带宽。人类对更大带宽接受信息的刚需，必然会推动眼前近距离显示器（比如 VR 头显）的普及和长时间使用，那么就需要解决“重量”问题和过重导致的佩戴不舒适问题。 
-这种解决方案可能是设计一种 VR 的固定使用场景。  
-## VR 的固定使用场景
-虽然 VR 头显是一种移动设备，但是固定场景的使用也是必须的。比如手机和笔记本电脑，这两种典型的移动设备，在大多数人的大部分使用场景，实际上是固定场景。  
-大部分人们不会长时间地边走路，边玩手机，更不会频繁地端着笔记本电脑走路。  
-人们都是坐着，甚至躺着玩手机，玩电脑的。  
-于是为弥补 VR 设备固定场景的长时间使用形式的缺失，我在 2019 年同 [Cunky](https://www.cunoe.com) 提出**一种可以自动捕获人脸空间状态并通过 FOC 反馈控制迎合人脸的末端持有的 VR 头显的机械臂。**  
-# 机械臂的预期效果  
-## 硬件
-这个机械臂固定在书桌上，位于人体躯干前方（原显示器位置）。
-开机前，机械臂处于折叠收起状态。  
-开机后，其上面的摄像头会识别人脸，根据特征点（landmark）估算角度，估算相对位置。  
-根据摄像头计算出的这些信息，机械臂开始展开，末端不断接近人脸。末端除了有 VR 头显，还有精细传感器（比如结构光）扫描人脸，生成人脸三维模型，用以加速 landmark 估算环节。  
-> 这个结构光传感器亦可用于元宇宙角色的表情识别。  
-> 这个传感器也可以用开放了结构光 SDK 的手机替代。  
-
+        <h1 id="为什么要设计-VR-机械臂"><a href="#为什么要设计-VR-机械臂" class="headerlink" title="为什么要设计 VR 机械臂"></a>为什么要设计 VR 机械臂</h1><h2 id="现有-VR-的问题"><a href="#现有-VR-的问题" class="headerlink" title="现有 VR 的问题"></a>现有 VR 的问题</h2><p>现在流行的 VR 设备（<a href="/2022/01%E5%9C%A3%E8%AF%9E%E8%8A%82%E5%89%8D%E6%97%A0%E6%B3%95%E7%BB%93%E6%9D%9F%E7%9A%84VR%E6%94%BB%E5%8A%BF/" title="圣诞节前无法结束的VR攻势">圣诞节前无法结束的VR攻势</a>），都是通过头带固定在眼前的。比如说 Oculus Quest 2，一斤多重（503 g），看似很轻，但人的脖子在正常姿势下承受头部重量约为五公斤，带多个 VR 头显，相当于多承重 10%。更不要说 VR 头显前凸的外观导致中心不平衡（力矩什么的定性理解就行了，这里就不定量分析了）。<br>VR 头显可以让人类以更沉浸的形式接入互联网，更是极大拓宽了人眼接入互联网的带宽。人类对更大带宽接受信息的刚需，必然会推动眼前近距离显示器（比如 VR 头显）的普及和长时间使用，那么就需要解决“重量”问题和过重导致的佩戴不舒适问题。<br>这种解决方案可能是设计一种 VR 的固定使用场景。  </p>
+<h2 id="VR-的固定使用场景"><a href="#VR-的固定使用场景" class="headerlink" title="VR 的固定使用场景"></a>VR 的固定使用场景</h2><p>虽然 VR 头显是一种移动设备，但是固定场景的使用也是必须的。比如手机和笔记本电脑，这两种典型的移动设备，在大多数人的大部分使用场景，实际上是固定场景。<br>大部分人们不会长时间地边走路，边玩手机，更不会频繁地端着笔记本电脑走路。<br>人们都是坐着，甚至躺着玩手机，玩电脑的。<br>于是为弥补 VR 设备固定场景的长时间使用形式的缺失，我在 2019 年同 <a target="_blank" rel="noopener" href="https://www.cunoe.com/">Cunky</a> 提出<strong>一种可以自动捕获人脸空间状态并通过 FOC 反馈控制迎合人脸的末端持有的 VR 头显的机械臂。</strong>  </p>
+<h1 id="机械臂的预期效果"><a href="#机械臂的预期效果" class="headerlink" title="机械臂的预期效果"></a>机械臂的预期效果</h1><h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><p>这个机械臂固定在书桌上，位于人体躯干前方（原显示器位置）。<br>开机前，机械臂处于折叠收起状态。<br>开机后，其上面的摄像头会识别人脸，根据特征点（landmark）估算角度，估算相对位置。<br>根据摄像头计算出的这些信息，机械臂开始展开，末端不断接近人脸。末端除了有 VR 头显，还有精细传感器（比如结构光）扫描人脸，生成人脸三维模型，用以加速 landmark 估算环节。  </p>
+<blockquote>
+<p>这个结构光传感器亦可用于元宇宙角色的表情识别。<br>这个传感器也可以用开放了结构光 SDK 的手机替代。  </p>
+</blockquote>
 <p>机械臂控制末端 VR 头显贴合人脸，保持 VR 头显以一个微小但舒适的里压迫面部，形成合理的 FOC 力反馈，这个反馈可以指导机械臂快速适应人脸姿态变化。<br>这基本上就是整个机械臂的硬件架构，大概就是：</p>
 <ol>
 <li>机械臂及附件卡口；</li>
@@ -345,7 +331,7 @@ VR 头显可以让人类以更沉浸的形式接入互联网，更是极大拓�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">软件设计</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E8%AE%A1-VR-%E6%9C%BA%E6%A2%B0%E8%87%82"><span class="nav-number">1.</span> <span class="nav-text">为什么要设计 VR 机械臂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E6%9C%89-VR-%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">现有 VR 的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VR-%E7%9A%84%E5%9B%BA%E5%AE%9A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">VR 的固定使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E6%A2%B0%E8%87%82%E7%9A%84%E9%A2%84%E6%9C%9F%E6%95%88%E6%9E%9C"><span class="nav-number">2.</span> <span class="nav-text">机械臂的预期效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.2.</span> <span class="nav-text">软件设计</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
